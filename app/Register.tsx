@@ -223,7 +223,7 @@ export default function Register() {
             <ActivityIndicator size="large" color={colors.darkblue} style={styles.progressBar} />
           )}
 
-          <Image source={require('../assets/images/register_5.png')} style={styles.imagebottom} />
+          <Image source={require('../assets/images/register_5.png')} />
 
         </View>
       </ScrollView>
@@ -344,7 +344,8 @@ const styles = StyleSheet.create({
     paddingStart: 15,
     paddingEnd: 15,
     fontFamily: 'Poppins',
-    textAlign: 'center'
+    textAlign: 'center',
+    color: colors.white
   },
   buttonContainer: {
     width: '100%',
@@ -374,8 +375,5 @@ const styles = StyleSheet.create({
     marginTop: 40,
     alignSelf: 'center'
   },
-  imagebottom: {
-
-  }
 });
 
