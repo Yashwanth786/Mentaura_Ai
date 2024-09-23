@@ -1,0 +1,44 @@
+{
+  "expo": {
+    "name": "Mentaura",
+    "slug": "mentaura",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/logocareer.jpg",
+    "scheme": "myapp",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/images/splash_screen.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "bundleIdentifier": "com.yashwanth786.mentaura",
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/logocareer.jpg",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.yashwanth786.mentaura"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      "expo-router"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "12c254a3-be47-46a8-a028-a379acdecca5"
+      }
+    },
+    "owner": "yashwanth786"
+  }
+}
