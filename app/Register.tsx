@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView, View, Text, TextInput, Image, StyleSheet, TouchableOpacity, ActivityIndicator, ToastAndroid } from 'react-native';
-import { Picker } from '@react-native-picker/picker'
+import { Picker } from '@react-native-picker/picker';
+import DropDownPicker from 'react-native-dropdown-picker';
 import { SplashScreen, useRouter } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
 import { StatusBar } from 'expo-status-bar'
@@ -8,7 +9,6 @@ import { useFonts } from 'expo-font';
 import colors from '../assets/colors';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 SplashScreen.preventAutoHideAsync();
 
@@ -18,11 +18,19 @@ export default function Register() {
 
   const [age, setAge] = useState<string>('');
   const [gender, setGender] = useState<string>('');
-  const [education, setEducation] = useState<string>('');
+  
   const [degree, setDegree] = useState<string>('');
   const [branch, setBranch] = useState<string>('');
   const [board, setBoard] = useState<string>('');
   const [subject, setSubject] = useState<string>('');
+
+  const [open, setOpen] = useState(false);
+  const [education, setEducation] = useState('');
+  const [items, setItems] = useState([
+    { label: 'High School', value: 'highschool' },
+    { label: "Bachelor's", value: 'bachelor' },
+    { label: "Master's", value: 'master' },
+  ]);
 
   const [fontsLoaded, error] = useFonts({
     "Roboto-Medium": require("../assets/fonts/Roboto/Roboto-Medium.ttf"),
@@ -77,61 +85,52 @@ export default function Register() {
               />
             </View>
 
-            <View style={styles.inputContainer}>
-              <Ionicons name="person" size={24} color={colors.darkblue} style={styles.iconStyle} />
-              <Text style={styles.text} >Gender:</Text>
-              <TextInput
-                style={styles.textInput}
-                placeholder="Enter your Gender"
-                placeholderTextColor={colors.white}
-              />
-            </View>
-
-            <View style={styles.inputContainer}>
-              <Ionicons name="school" size={24} color={colors.darkblue} style={styles.iconStyle} />
-              <Text style={styles.text} >Education:</Text>
-              <TextInput
-                style={styles.textInput}
-                placeholder="Your Eduaction"
-                placeholderTextColor={colors.white}
-              />
-            </View>
-
             {/* Gender Picker */}
-            {/*<View style={styles.inputContainer}>
+            <View style={styles.inputContainer}>
               <Ionicons name="person" size={24} color={colors.darkblue} style={styles.iconStyle} />
-              <Text style={styles.text} >Gender:</Text>
-              <Picker
-                selectedValue={gender}
-                style={styles.input}
-                onValueChange={(itemValue: string) => setGender(itemValue)}
-              >
-                <Picker.Item label="Select Gender" value="" />
-                <Picker.Item label="Male" value="male" />
-                <Picker.Item label="Female" value="female" />
-              </Picker>
+              <Text style={styles.text}>Gender:</Text>
+              <View style={styles.pickerContainer}>
+                <Picker
+                  selectedValue={gender}
+                  style={styles.input}
+                  onValueChange={(itemValue: string, itemIndex) => { setGender(itemIndex === 0 ? "" : itemValue); }}
+                  mode="dropdown"
+                >
+                  <Picker.Item label="Select Gender" value={null} />
+                  <Picker.Item label="Male" value="male" />
+                  <Picker.Item label="Female" value="female" />
+                  <Picker.Item label="Other" value="other" />
+                </Picker>
+              </View>
             </View>
 
             {/* Education Picker */}
-            {/*<View style={styles.inputContainer}>
+            <View style={styles.inputContainer}>
               <Ionicons name="person" size={24} color={colors.darkblue} style={styles.iconStyle} />
-              <Picker
-                selectedValue={education}
-                style={styles.input}
-                onValueChange={(itemValue: string) => setEducation(itemValue)}
-              >
-                <Picker.Item label="Select Education" value="" />
-                <Picker.Item label="High School" value="highschool" />
-                <Picker.Item label="Bachelor's" value="bachelor" />
-                <Picker.Item label="Master's" value="master" />
-              </Picker>
+              <Text style={styles.text}>Education:</Text>
+              <View style={styles.pickerContainer}>
+                <DropDownPicker
+                  open={open}
+                  value={education}
+                  items={items}
+                  setOpen={setOpen}
+                  setValue={setEducation}
+                  setItems={setItems}
+                  placeholder="Select Education"
+                  style={styles.dropdown}
+                  placeholderStyle={styles.placeholderStyle}
+                  dropDownContainerStyle={styles.dropDownContainerStyle}
+                  listItemLabelStyle={styles.listItemLabelStyle}
+                />
+              </View>
             </View>
 
+
             {/* Conditionally render based on education selection */}
-            {/*{education === 'highschool' && (
+            {education === 'highschool' && (
               <>
                 {/* Board Picker */}
-                {/*<View style={styles.inputContainer}>
+                <View style={styles.inputContainer}>
                   
                   <Picker
                     selectedValue={board}
@@ -146,7 +145,7 @@ export default function Register() {
                 </View>
 
                 {/* Subject Picker */}
-                {/*<View style={styles.inputContainer}>
+                <View style={styles.inputContainer}>
                   
                   <Picker
                     selectedValue={subject}
@@ -165,7 +164,7 @@ export default function Register() {
             {education === 'bachelor' && (
               <>
                 {/* Degree Picker */}
-                {/*<View style={styles.inputContainer}>
+                <View style={styles.inputContainer}>
                   
                   <Picker
                     selectedValue={degree}
@@ -179,7 +178,7 @@ export default function Register() {
                 </View>
 
                 {/* Branch Picker */}
-                {/*<View style={styles.inputContainer}>
+                <View style={styles.inputContainer}>
                   
                   <Picker
                     selectedValue={branch}
@@ -193,7 +192,6 @@ export default function Register() {
                 </View>
               </>
             )} 
-            */}
 
             {/* Hobbies Section */}
             <Text style={styles.hobbiesText}>Interests:</Text>
@@ -307,12 +305,34 @@ const styles = StyleSheet.create({
     color: colors.white,
     paddingLeft: 10,
   },
-  input: {
+  pickerContainer: {
     flex: 1,
-    height: 65,
-    backgroundColor: colors.darkblue,
-    borderRadius: 19,
-    padding: 10,
+    height: 50,
+    backgroundColor: colors.lightblue,
+    borderRadius: 25,
+    overflow: 'hidden'
+  },
+  input: {
+    flex:1,
+    backgroundColor: colors.lightblue,
+    color: '#fff',
+  },
+  dropdown: {
+    backgroundColor: colors.lightblue,
+    borderColor: colors.black,
+    borderRadius: 25,
+    color: '#fff',
+  },
+  dropDownContainerStyle: {
+    backgroundColor: colors.lightblue,
+    borderColor: colors.black,
+  },
+  placeholderStyle: {
+    fontSize: 16,
+    color: '#fff',
+  },
+  listItemLabelStyle: {
+    fontSize: 16,
     color: '#fff',
   },
   icon: {
