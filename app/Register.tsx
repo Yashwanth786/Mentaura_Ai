@@ -18,19 +18,11 @@ export default function Register() {
 
   const [age, setAge] = useState<string>('');
   const [gender, setGender] = useState<string>('');
-  
+  const [education, setEducation] = useState('');
   const [degree, setDegree] = useState<string>('');
   const [branch, setBranch] = useState<string>('');
   const [board, setBoard] = useState<string>('');
   const [subject, setSubject] = useState<string>('');
-
-  const [open, setOpen] = useState(false);
-  const [education, setEducation] = useState('');
-  const [items, setItems] = useState([
-    { label: 'High School', value: 'highschool' },
-    { label: "Bachelor's", value: 'bachelor' },
-    { label: "Master's", value: 'master' },
-  ]);
 
   const [fontsLoaded, error] = useFonts({
     "Roboto-Medium": require("../assets/fonts/Roboto/Roboto-Medium.ttf"),
@@ -92,11 +84,11 @@ export default function Register() {
               <View style={styles.pickerContainer}>
                 <Picker
                   selectedValue={gender}
-                  style={styles.input}
+                  style={styles.picker}
                   onValueChange={(itemValue: string, itemIndex) => { setGender(itemIndex === 0 ? "" : itemValue); }}
                   mode="dropdown"
                 >
-                  <Picker.Item label="Select Gender" value={null} />
+                  <Picker.Item style={styles.pickeritems} fontFamily='Montserrat' label="Select Gender" value={null} />
                   <Picker.Item label="Male" value="male" />
                   <Picker.Item label="Female" value="female" />
                   <Picker.Item label="Other" value="other" />
@@ -109,19 +101,17 @@ export default function Register() {
               <Ionicons name="person" size={24} color={colors.darkblue} style={styles.iconStyle} />
               <Text style={styles.text}>Education:</Text>
               <View style={styles.pickerContainer}>
-                <DropDownPicker
-                  open={open}
-                  value={education}
-                  items={items}
-                  setOpen={setOpen}
-                  setValue={setEducation}
-                  setItems={setItems}
-                  placeholder="Select Education"
-                  style={styles.dropdown}
-                  placeholderStyle={styles.placeholderStyle}
-                  dropDownContainerStyle={styles.dropDownContainerStyle}
-                  listItemLabelStyle={styles.listItemLabelStyle}
-                />
+                <Picker
+                  selectedValue={education}
+                  style={styles.picker}
+                  onValueChange={(itemValue: string, itemIndex) => { setEducation(itemIndex === 0 ? "" : itemValue); }}
+                  mode="dropdown"
+                >
+                  <Picker.Item label="Select Education" value={null} />
+                  <Picker.Item label="High School" value="highschool" />
+                  <Picker.Item label="Bachelor's" value="bachelor" />
+                  <Picker.Item label="Master's" value="master" />
+                </Picker>
               </View>
             </View>
 
@@ -134,7 +124,7 @@ export default function Register() {
                   
                   <Picker
                     selectedValue={board}
-                    style={styles.input}
+                    style={styles.picker}
                     onValueChange={(itemValue: string) => setBoard(itemValue)}
                   >
                     <Picker.Item label="Select Board" value="" />
@@ -149,7 +139,7 @@ export default function Register() {
                   
                   <Picker
                     selectedValue={subject}
-                    style={styles.input}
+                    style={styles.picker}
                     onValueChange={(itemValue: string) => setSubject(itemValue)}
                   >
                     <Picker.Item label="Select Subject" value="" />
@@ -168,7 +158,7 @@ export default function Register() {
                   
                   <Picker
                     selectedValue={degree}
-                    style={styles.input}
+                    style={styles.picker}
                     onValueChange={(itemValue: string) => setDegree(itemValue)}
                   >
                     <Picker.Item label="Select Degree" value="" />
@@ -182,7 +172,7 @@ export default function Register() {
                   
                   <Picker
                     selectedValue={branch}
-                    style={styles.input}
+                    style={styles.picker}
                     onValueChange={(itemValue: string) => setBranch(itemValue)}
                   >
                     <Picker.Item label="Select Branch" value="" />
@@ -303,38 +293,26 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: "Montserrat",
     color: colors.white,
+    alignSelf: 'center',
     paddingLeft: 10,
   },
   pickerContainer: {
     flex: 1,
-    height: 50,
-    backgroundColor: colors.lightblue,
-    borderRadius: 25,
+    height: 48,
+    backgroundColor: colors.black,
+    borderRadius: 24,
     overflow: 'hidden'
   },
-  input: {
-    flex:1,
+  picker: {
     backgroundColor: colors.lightblue,
+    fontFamily: "Montserrat",
     color: '#fff',
   },
-  dropdown: {
+  pickeritems: {
     backgroundColor: colors.lightblue,
-    borderColor: colors.black,
-    borderRadius: 25,
-    color: '#fff',
   },
-  dropDownContainerStyle: {
-    backgroundColor: colors.lightblue,
-    borderColor: colors.black,
-  },
-  placeholderStyle: {
-    fontSize: 16,
-    color: '#fff',
-  },
-  listItemLabelStyle: {
-    fontSize: 16,
-    color: '#fff',
-  },
+
+
   icon: {
     width: 24,
     height: 24,
