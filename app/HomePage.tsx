@@ -44,11 +44,11 @@ export default function HomePage() {
 
         <Text style={styles.text}>Hello,{"\n"}what would you prefer to choose?</Text>
 
-        <TouchableOpacity style={styles.button} onPress={() => router.push('/Register')}>
+        <TouchableOpacity style={styles.button} onPress={() => router.push('/DreamRole')}>
           <Text style={styles.textbutton}>Attain Your Dream Role{"\n"}with our Assistance</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button} onPress={() => router.push('/Register')}>
+        <TouchableOpacity style={styles.button} onPress={() => router.push('/CareerPath')}>
           <Text style={styles.textbutton}>Discover Your{"\n"}Career Path with us</Text>
         </TouchableOpacity>
 
