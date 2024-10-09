@@ -14,6 +14,9 @@ export default function DreamRole() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
+  const [dreamRole, setDreamRole] = useState('');
+  const [dreamCompany, setDreamCompany] = useState('');
+
   const [fontsLoaded, error] = useFonts({
     "Roboto-Medium": require("../assets/fonts/Roboto/Roboto-Medium.ttf"),
     "Roboto": require("../assets/fonts/Roboto/Roboto-Regular.ttf"),
@@ -28,6 +31,15 @@ export default function DreamRole() {
       SplashScreen.hideAsync();
     }
   }, [fontsLoaded, error]);
+
+  const handleSubmit = () => {
+    if (dreamRole === '' || dreamCompany === '') {
+      ToastAndroid.show('Please fill in all fields', ToastAndroid.SHORT); // Show toast if any field is empty
+    } else {
+      // If both fields are filled, navigate to MainActivity
+      router.push('/MainActivity');
+    }
+  };
 
 
   if (!fontsLoaded) {
@@ -58,29 +70,33 @@ export default function DreamRole() {
           <View style={styles.container1}>
             {/* Dream role */}
             <Text style={styles.text1} >Dream Role</Text>
-            <Ionicons name="calendar" size={24} color={colors.darkblue} style={styles.iconStyle1} />
+            <Ionicons name="id-card" size={24} color={colors.darkblue} style={styles.iconStyle1} />
             <View style={styles.inputContainer1}>
               <TextInput
                 style={styles.textInput1}
                 placeholder="What's your dream role?"
                 placeholderTextColor={colors.white}
+                value={dreamRole}
+                onChangeText={setDreamRole}
               />
             </View>
 
             {/* Dream company */}
             <Text style={styles.text2} >Dream Comapny</Text>
-            <Ionicons name="calendar" size={24} color={colors.darkblue} style={styles.iconStyle2} />
+            <Ionicons name="business" size={24} color={colors.darkblue} style={styles.iconStyle2} />
             <View style={styles.inputContainer1}>
               <TextInput
                 style={styles.textInput1}
                 placeholder="What's your dream company?"
                 placeholderTextColor={colors.white}
+                value={dreamCompany}
+                onChangeText={setDreamCompany}
               />
             </View>
 
             <TouchableOpacity
               style={styles.buttonContainer}
-              onPress={() => router.push('/MainActivity')}>
+              onPress={handleSubmit}>
               <LinearGradient
                 colors={['#1398C2', '#09485C']}
                 start={{ x: 0, y: 0 }} // Starting point (left)
@@ -110,7 +126,7 @@ export default function DreamRole() {
 const styles = StyleSheet.create({
   safeContainer: {
     flex: 1,
-    backgroundColor: colors.lightblue, // Ensure the background color is applied
+    backgroundColor: colors.lightblue,
   },
   container: {
     flexGrow: 1,
@@ -229,6 +245,7 @@ const styles = StyleSheet.create({
     marginStart: 34,
     width: 150,
     height: 200, 
+    opacity: 0.6
   },
 });
 
