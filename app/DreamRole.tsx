@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
   },
   backcontainer: {
     marginTop: 25,
-    marginStart: 16
+    marginStart: 20
   },
   loginImage: {
     position: 'absolute',
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
   home: {
     marginTop: -30,
     alignSelf: 'flex-end',
-    marginEnd: 16
+    marginEnd: 24
   },
   container1: {
     width: '88%',

@@ -86,7 +86,7 @@ export default function EntryPage() {
           {/* Log in Button */}
           <TouchableOpacity
             style={styles.buttonContainer}
-            onPress={() => router.push('/Login')}>
+            onPress={() => router.push('/CareerPath')}>
             <LinearGradient
               colors={['#1398C2', '#09485C']}
               start={{ x: 0, y: 0 }} // Starting point (left)
