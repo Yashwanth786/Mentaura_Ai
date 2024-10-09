@@ -36,11 +36,11 @@ export default function careerpath() {
 
   return (
     <SafeAreaView style={styles.safeContainer}>
-      <StatusBar style='auto' backgroundColor={colors.lightblue} />
+      <StatusBar style='auto' backgroundColor={colors.ldarkblue} />
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.main}>
           {/* Top image */}
-          <Image source={require('../assets/images/dreamrole_1.png')} style={styles.topImage} />
+          <Image source={require('../assets/images/careerpath_1.png')} style={styles.topImage} />
 
           {/* Back button */}
           <TouchableOpacity style={styles.backcontainer}
@@ -70,7 +70,7 @@ export default function careerpath() {
 const styles = StyleSheet.create({
   safeContainer: {
     flex: 1,
-    backgroundColor: colors.lightblue,
+    backgroundColor: colors.ldarkblue
   },
   container: {
     flexGrow: 1,
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
   main: {
     flex: 1,
     justifyContent: 'flex-start',
-    backgroundColor: colors.lightblue,
+    backgroundColor: colors.ldarkblue,
   },
   topImage: {
     position: 'absolute',
