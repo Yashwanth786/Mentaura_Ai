@@ -6,7 +6,6 @@ import { useFonts } from 'expo-font';
 import colors from '../assets/colors';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import MessageList from './MessageList';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -50,7 +49,19 @@ export default function careerpath() {
           {/* Robo Image */}
           <Image source={require('../assets/images/careerpath_1.png')} style={styles.robo} />
 
-          <MessageList />
+          {/* Chat Layout (RecyclerView equivalent) */}
+          <View style={styles.chatLayout}>
+            <FlatList
+              data={[]} // Add data here
+              renderItem={({ item }) => (
+                // Render chat items here
+                <View style={styles.chatItem}>
+                  {/* Chat item UI */}
+                </View>
+              )}
+              keyExtractor={(item, index) => index.toString()}
+            />
+          </View>
 
           {/* Bottom layout */}
           <View style={styles.bottomLayout}>
