@@ -7,14 +7,19 @@ import { useFonts } from 'expo-font';
 import colors from '../assets/colors';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import menu from '../components/menu';
 
 SplashScreen.preventAutoHideAsync();
+
+const Drawer = createDrawerNavigator();
 
 export default function MainActivity() {
   const router = useRouter();
 
   const [fontsLoaded, error] = useFonts({
-    "Montserrat": require("../assets/fonts/Montserrat/static/Montserrat-Regular.ttf"),
+    "Montserrat-Medium": require("../assets/fonts/Montserrat/static/Montserrat-SemiBold.ttf"),
     "Poppins": require("../assets/fonts/Poppins/Poppins-Medium.ttf"),
     "Poppins-Bold": require("../assets/fonts/Poppins/Poppins-Bold.ttf")
   });
@@ -29,6 +34,30 @@ export default function MainActivity() {
     return null;
   }
 
+  return (
+    <NavigationContainer>
+      <Drawer.Navigator
+        initialRouteName="MainActivity"
+        drawerContent={(props) => <menu {...props} />}
+        screenOptions={{
+          headerShown: false, // Hide default header
+        }}
+      >
+        <Drawer.Screen name="MainActivity" component={MainActivity} />
+        <Drawer.Screen name="Home" component={HomeScreen} />
+        <Drawer.Screen name="Profile" component={ProfileScreen} />
+        <Drawer.Screen name="Settings" component={SettingsScreen} />
+        <Drawer.Screen name="SavedMessages" component={SavedMessagesScreen} />
+        <Drawer.Screen name="AntiDistraction" component={AntiDistractionScreen} />
+        <Drawer.Screen name="Help" component={HelpScreen} />
+        <Drawer.Screen name="ShareUs" component={ShareUsScreen} />
+        <Drawer.Screen name="SignOut" component={SignOutScreen} />
+      </Drawer.Navigator>
+    </NavigationContainer>
+  );
+}
+
+function MainActivity_first({ navigation }) {
   return (
     <SafeAreaView style={styles.safeContainer}>
       <StatusBar style='auto' backgroundColor={colors.customColor} />
@@ -55,16 +84,94 @@ export default function MainActivity() {
             style={styles.buttonContainer}
             onPress={() => router.push('/MainActivity')}>
             <LinearGradient
-              colors={['#1398C2', '#09485C']}
+              colors={['#75D6FF', '#69B8D7', '#65AFCC', '#425B5C']}
+              locations={[0, 0.30, 0.75, 1]}
               start={{ x: 0, y: 0 }} // Starting point (left)
               end={{ x: 1, y: 0 }} // Ending point (right)
               style={styles.gradient}>
-              <Text style={styles.buttonText}>Submit</Text>
+              <Image source={require('../assets/images/mainactivity_2.png')} style={styles.lefticon} />
+              <Text style={styles.buttonText}>Communities</Text>
+              <Ionicons name='chevron-forward' size={35} color={'#CFC90A'} style={styles.righticon} />
+            </LinearGradient>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.buttonContainer1}
+            onPress={() => router.push('/MainActivity')}>
+            <LinearGradient
+              colors={['#75D6FF', '#69B8D7', '#65AFCC', '#425B5C']}
+              locations={[0, 0.30, 0.75, 1]}
+              start={{ x: 0, y: 0 }} // Starting point (left)
+              end={{ x: 1, y: 0 }} // Ending point (right)
+              style={styles.gradient}>
+              <Image source={require('../assets/images/mainactivity_3.png')} style={styles.lefticon} />
+              <Text style={styles.buttonText}>Goals</Text>
+              <Ionicons name='chevron-forward' size={35} color={'#CFC90A'} style={styles.righticon} />
+            </LinearGradient>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.buttonContainer1}
+            onPress={() => router.push('/MainActivity')}>
+            <LinearGradient
+              colors={['#75D6FF', '#69B8D7', '#65AFCC', '#425B5C']}
+              locations={[0, 0.30, 0.75, 1]}
+              start={{ x: 0, y: 0 }} // Starting point (left)
+              end={{ x: 1, y: 0 }} // Ending point (right)
+              style={styles.gradient}>
+              <Image source={require('../assets/images/mainactivity_4.png')} style={styles.lefticon1} />
+              <Text style={styles.buttonText1}>Achivements and Awards</Text>
+              <Ionicons name='chevron-forward' size={35} color={'#CFC90A'} style={styles.righticon} />
+            </LinearGradient>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.buttonContainer1}
+            onPress={() => router.push('/MainActivity')}>
+            <LinearGradient
+              colors={['#75D6FF', '#69B8D7', '#65AFCC', '#425B5C']}
+              locations={[0, 0.30, 0.75, 1]}
+              start={{ x: 0, y: 0 }} // Starting point (left)
+              end={{ x: 1, y: 0 }} // Ending point (right)
+              style={styles.gradient}>
+              <Image source={require('../assets/images/mainactivity_5.png')} style={styles.lefticon} />
+              <Text style={styles.buttonText}>Subcriptions</Text>
+              <Ionicons name='chevron-forward' size={35} color={'#CFC90A'} style={styles.righticon} />
+            </LinearGradient>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.buttonContainer1}
+            onPress={() => router.push('/MainActivity')}>
+            <LinearGradient
+              colors={['#75D6FF', '#69B8D7', '#65AFCC', '#425B5C']}
+              locations={[0, 0.30, 0.75, 1]}
+              start={{ x: 0, y: 0 }} // Starting point (left)
+              end={{ x: 1, y: 0 }} // Ending point (right)
+              style={styles.gradient}>
+              <Image source={require('../assets/images/mainactivity_6.png')} style={styles.lefticon} />
+              <Text style={styles.buttonText}>Courses</Text>
+              <Ionicons name='chevron-forward' size={35} color={'#CFC90A'} style={styles.righticon} />
+            </LinearGradient>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.buttonContainer1}
+            onPress={() => router.push('/MainActivity')}>
+            <LinearGradient
+              colors={[ '#75D6FF', '#69B8D7', '#65AFCC', '#425B5C']}
+              locations={[0, 0.30, 0.75, 1]}
+              start={{ x: 0, y: 0 }} // Starting point (left)
+              end={{ x: 1, y: 0 }} // Ending point (right)
+              style={styles.gradient}>
+              <Image source={require('../assets/images/mainactivity_7.png')} style={styles.lefticon} />
+              <Text style={styles.buttonText}>Jobs and Opportunities</Text>
+              <Ionicons name='chevron-forward' size={35} color={'#CFC90A'} style={styles.righticon} />
             </LinearGradient>
           </TouchableOpacity>
 
           {/* Bottom Image */}
-          <Image source={require('../assets/images/careerpath.jpg')} style={styles.bottomImage} />
+          <Image source={require('../assets/images/base_for_login_and_register.png')} style={styles.bottomImage} />
 
         </View>
       </ScrollView>
@@ -85,13 +192,24 @@ const styles = StyleSheet.create({
   main: {
     flex: 1,
     justifyContent: 'flex-start',
-    backgroundColor: colors.darkblue,
+    backgroundColor: '#0C5D80',
   },
   header:{
     height: 300,
     backgroundColor: colors.customColor,
     borderBottomLeftRadius: 30,
-    borderBottomRightRadius: 30
+    borderBottomRightRadius: 30,
+    borderWidth: 0.1,
+    borderBottomWidth: 5,
+    borderBlockColor: 'rgba(0, 0, 0, 0.3)',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.8,
+    shadowRadius: 3,
+    elevation: 10,       
   },
   topImage: {
     position: 'absolute',
@@ -122,35 +240,67 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   buttonContainer: {
-    width: '100%',
-    height: 50,
+    width: '90%',
+    height: 52,
     alignSelf: 'center',
     marginTop: 52,
     marginBottom: 16
   },
+  buttonContainer1: {
+    width: '90%',
+    height: 52,
+    alignSelf: 'center',
+    marginBottom: 16
+  },
   gradient: {
     flex: 1,
-    justifyContent: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    borderRadius: 25,
-    elevation: 10,
+    borderRadius: 5,
+    borderWidth: 0.1,
+    borderBottomWidth: 2,
+    borderBlockColor: 'rgba(0, 0, 0, 0.2)',
     shadowColor: '#000',
-    shadowOffset: { width: 2, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 10,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.8,
+    shadowRadius: 3,
+    elevation: 10,       
+  },
+  lefticon: {
+    width: 24,
+    height: 24,
+    marginStart: 16,
+  },
+  lefticon1: {
+    width: 18,
+    height: 26,
+    marginStart: 16   
   },
   buttonText: {
-    color: '#FFF',
-    fontSize: 26,
-    textAlign: 'center',
+    flex: 1,
+    color: '#000',
+    fontSize: 20,
     fontFamily: 'Montserrat',
+    textAlign: 'left',
+    marginStart: 10
+  },
+  buttonText1: {
+    flex: 1,
+    color: '#000',
+    fontSize: 20,
+    fontFamily: 'Montserrat',
+    textAlign: 'left',
+    marginStart: 16
+  },
+  righticon: {
+    marginEnd: 10
   },
   bottomImage: {
-    marginTop: 44,
-    marginStart: 34,
-    width: 150,
-    height: 200,
-    opacity: 0.6
+    aspectRatio: 2.15,
   },
 });
 
