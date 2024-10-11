@@ -189,8 +189,8 @@ export default function Register() {
               style={styles.inputhobbies}
               placeholder="Provide a description of your Interests"
               placeholderTextColor="#fff"
-              multiline={true}
-            ></TextInput>
+              multiline={true} >
+            </TextInput>
 
             <TouchableOpacity
               style={styles.buttonContainer}
