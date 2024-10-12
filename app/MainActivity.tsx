@@ -68,7 +68,7 @@ export default function MainActivity() {
 
           <TouchableOpacity
             style={styles.buttonContainer1}
-            onPress={() => router.push('/MainActivity')}>
+            onPress={() => router.push('/GoalsActivity')}>
             <LinearGradient
               colors={['#75D6FF', '#69B8D7', '#65AFCC', '#425B5C']}
               locations={[0, 0.30, 0.75, 1]}
