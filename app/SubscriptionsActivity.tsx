@@ -20,7 +20,7 @@ export default function SubscriptionsActivity() {
                 { text: 'Cancel', style: 'cancel' },
                 {
                     text: 'Proceed',
-                    onPress: () => router.push('/MainActivity') // Navigate to PaymentActivity
+                    onPress: () => router.push('/PaymentActivity') // Navigate to PaymentActivity
                 }
             ]
         );
