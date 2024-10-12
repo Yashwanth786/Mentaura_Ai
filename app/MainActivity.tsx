@@ -7,13 +7,8 @@ import { useFonts } from 'expo-font';
 import colors from '../assets/colors';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import menu from '../components/menu';
 
 SplashScreen.preventAutoHideAsync();
-
-const Drawer = createDrawerNavigator();
 
 export default function MainActivity() {
   const router = useRouter();
@@ -34,30 +29,6 @@ export default function MainActivity() {
     return null;
   }
 
-  return (
-    <NavigationContainer>
-      <Drawer.Navigator
-        initialRouteName="MainActivity"
-        drawerContent={(props) => <menu {...props} />}
-        screenOptions={{
-          headerShown: false, // Hide default header
-        }}
-      >
-        <Drawer.Screen name="MainActivity" component={MainActivity} />
-        <Drawer.Screen name="Home" component={HomeScreen} />
-        <Drawer.Screen name="Profile" component={ProfileScreen} />
-        <Drawer.Screen name="Settings" component={SettingsScreen} />
-        <Drawer.Screen name="SavedMessages" component={SavedMessagesScreen} />
-        <Drawer.Screen name="AntiDistraction" component={AntiDistractionScreen} />
-        <Drawer.Screen name="Help" component={HelpScreen} />
-        <Drawer.Screen name="ShareUs" component={ShareUsScreen} />
-        <Drawer.Screen name="SignOut" component={SignOutScreen} />
-      </Drawer.Navigator>
-    </NavigationContainer>
-  );
-}
-
-function MainActivity_first({ navigation }) {
   return (
     <SafeAreaView style={styles.safeContainer}>
       <StatusBar style='auto' backgroundColor={colors.customColor} />
