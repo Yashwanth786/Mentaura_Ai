@@ -98,7 +98,7 @@ export default function MainActivity() {
 
           <TouchableOpacity
             style={styles.buttonContainer1}
-            onPress={() => router.push('/MainActivity')}>
+            onPress={() => router.push('/SubscriptionsActivity')}>
             <LinearGradient
               colors={['#75D6FF', '#69B8D7', '#65AFCC', '#425B5C']}
               locations={[0, 0.30, 0.75, 1]}
@@ -106,7 +106,7 @@ export default function MainActivity() {
               end={{ x: 1, y: 0 }} // Ending point (right)
               style={styles.gradient}>
               <Image source={require('../assets/images/mainactivity_5.png')} style={styles.lefticon} />
-              <Text style={styles.buttonText}>Subcriptions</Text>
+              <Text style={styles.buttonText}>Subscriptions</Text>
               <Ionicons name='chevron-forward' size={35} color={'#CFC90A'} style={styles.righticon} />
             </LinearGradient>
           </TouchableOpacity>

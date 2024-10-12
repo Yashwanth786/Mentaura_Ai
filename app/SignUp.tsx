@@ -227,7 +227,7 @@ const styles = StyleSheet.create({
         fontSize: 17,
     },
     inputContainer: {
-        width: 365,
+        width: '90%',
         height: 55,
         backgroundColor: '#D9D9D9',
         borderRadius: 15,
@@ -259,7 +259,7 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         marginTop: 52,
-        width: 365,
+        width: '90%',
         height: 50,
         alignSelf: 'center',
     },

@@ -8,6 +8,8 @@ import Login from './Login';
 import SignUp from './SignUp';
 import MainActivity from './MainActivity';
 import GoalsActivity from './GoalsActivity';
+import SubscriptionsActivity from './SubscriptionsActivity';
+import PaymentActivity from './PaymentActivity';
 
 const Stack = createNativeStackNavigator(); // Updated to use native stack
 
@@ -22,6 +24,8 @@ export default function App() {
         <Stack.Screen name="SignUp" component={SignUp} options={{ headerShown: false }} />
         <Stack.Screen name="MainActivity" component={MainActivity} options={{ headerShown:false }} />
         <Stack.Screen name="GoalsActivity" component={GoalsActivity} options={{ headerShown: false }} />
+        <Stack.Screen name="SubscriptionsActivity" component={SubscriptionsActivity} options={{ headerShown: false }} />
+        <Stack.Screen name="PaymentActivity" component={PaymentActivity} options={{ headerShown: false }} />
         {/* Add more screens as needed */}
       </Stack.Navigator>
     </NavigationContainer>

@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     marginTop: -330
   },
   button: {
-    width: 320,
+    width: '80%',
     height: 70,
     backgroundColor: '#D9D9D9',
     borderRadius: 35,
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     marginTop: -252,
-    width: 365,
+    width: '90%',
     height: 50,
     alignSelf: 'center',
   },

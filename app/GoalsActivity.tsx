@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { Picker } from '@react-native-picker/picker';
-import DropDownPicker from 'react-native-dropdown-picker';
+import React, { useEffect } from 'react';
+import { View, Text, Image, FlatList, StyleSheet, TouchableOpacity, ListRenderItem } from 'react-native';
 import { SplashScreen, useRouter } from 'expo-router';
-import { LinearGradient } from 'expo-linear-gradient';
 import { StatusBar } from 'expo-status-bar'
 import { useFonts } from 'expo-font';
 import colors from '../assets/colors';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { View, Text, Image, FlatList, StyleSheet, TouchableOpacity, ListRenderItem } from 'react-native';
+
+SplashScreen.preventAutoHideAsync();
 
 // Define the type for the data items
 interface GoalItem {
@@ -32,94 +31,131 @@ const GoalsActivity: React.FC = () => {
 
     const renderRoadmapItem: ListRenderItem<GoalItem> = ({ item }) => (
         <View style={styles.bubbleContainer}>
-            <Text>{item.name}</Text>
+            <Text style={styles.recyclerView_text}>{item.name}</Text>
         </View>
     );
 
     const renderWeeklyGoalsItem: ListRenderItem<GoalItem> = ({ item }) => (
         <View style={styles.bubbleContainer}>
-            <Text>{item.name}</Text>
+            <Text style={styles.recyclerView_text}>{item.name}</Text>
         </View>
     );
 
+    const [fontsLoaded, error] = useFonts({
+        "Roboto": require("../assets/fonts/Roboto/Roboto-Regular.ttf"),
+        "Roboto-SemiBold": require("../assets/fonts/Roboto/Roboto-Medium.ttf"),
+        "Roboto-Bold": require("../assets/fonts/Roboto/Roboto-Bold.ttf"),
+    });
+
+    useEffect(() => {
+        if (fontsLoaded && !error) {
+            SplashScreen.hideAsync();
+        }
+    }, [fontsLoaded, error]);
+
+    if (!fontsLoaded) {
+        return null;
+    }
+
     return (
-        <View style={styles.container}>
-            {/* Header Section */}
-            <View style={styles.header}>
-                <TouchableOpacity onPress={() => router.back()}>
-                    <Ionicons
-                        name='arrow-back-outline' size={35} color={colors.white}
-                        style={styles.backButton}
-                    />
-                </TouchableOpacity>
-                <Text style={styles.title}>GOALS</Text>
+        <SafeAreaView style={styles.safecontainer} >
+            <StatusBar style='auto' backgroundColor={colors.lightblue} />
+            <View style={styles.container}>
+                {/* Header Section */}
+                <View style={styles.header}>
+                    <TouchableOpacity onPress={() => router.push('/MainActivity')}>
+                        <Ionicons
+                            name='arrow-back-outline' size={35} color={colors.darkblue}
+                            style={styles.backButton}
+                        />
+                    </TouchableOpacity>
+                    <Text style={styles.title}>GOALS</Text>
+                </View>
+
+                {/* Preferred Career Path */}
+                <Text style={styles.careerPathText}>Career Roadmap</Text>
+
+                {/* Roadmap RecyclerView */}
+                <FlatList
+                    data={roadmapData}
+                    renderItem={renderRoadmapItem}
+                    keyExtractor={(item) => item.id}
+                    style={styles.recyclerView}
+                />
+
+                <Text style={styles.weekly}>Weekly Goals</Text>
+
+                {/* Weekly Goals RecyclerView */}
+                <FlatList
+                    data={weeklyGoalsData}
+                    renderItem={renderWeeklyGoalsItem}
+                    keyExtractor={(item) => item.id}
+                    style={styles.recyclerView}
+                />
             </View>
-
-            {/* Preferred Career Path */}
-            <Text style={styles.careerPathText}>Preferred Career Path</Text>
-
-            {/* Roadmap RecyclerView */}
-            <FlatList
-                data={roadmapData}
-                renderItem={renderRoadmapItem}
-                keyExtractor={(item) => item.id}
-                style={styles.recyclerView}
-            />
-
-            {/* Weekly Goals RecyclerView */}
-            <FlatList
-                data={weeklyGoalsData}
-                renderItem={renderWeeklyGoalsItem}
-                keyExtractor={(item) => item.id}
-                style={styles.recyclerView}
-            />
-        </View>
+        </SafeAreaView>
     );
 };
 
 const styles = StyleSheet.create({
+    safecontainer: {
+        flex: 1,
+        backgroundColor: colors.lightblue
+    },
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: colors.white,
     },
     header: {
-        height: 75,
-        backgroundColor: '#ADD8E6', // lightblue
+        height: 50,
+        backgroundColor: colors.lightblue,
         flexDirection: 'row',
-        alignItems: 'center',
         paddingHorizontal: 16,
     },
     backButton: {
-        width: 32,
-        height: 32,
-        tintColor: '#00008B', // darkblue
+        marginTop: -5,
         marginRight: 16,
     },
     title: {
+        marginTop: -10.5,
+        marginStart: 80,
         fontSize: 34,
         fontFamily: 'Roboto-Bold',
-        color: '#00008B', // darkblue
+        color: colors.darkblue,
+        textAlign: 'center'
     },
     careerPathText: {
-        marginTop: 32,
-        marginLeft: 34,
-        fontSize: 16,
-        fontFamily: 'Roboto',
-        fontWeight: 'bold',
-        color: '#00008B', // darkblue
+        marginTop: 20,
+        marginLeft: 30,
+        fontSize: 20,
+        fontFamily: 'Roboto-Bold',
+        color: colors.darkblue
+    },
+    weekly: {
+        marginTop: 8,
+        marginLeft: 30,
+        fontSize: 20,
+        fontFamily: 'Roboto-Bold',
+        color: colors.darkblue
     },
     recyclerView: {
         flex: 1,
         margin: 16,
-        backgroundColor: '#F0F0F0',
-        borderRadius: 8,
+        padding: 8,
+        backgroundColor: colors.darkblue,
+        borderRadius: 16,
     },
     bubbleContainer: {
         padding: 16,
-        backgroundColor: '#E0E0E0',
+        backgroundColor: colors.lightblue,
         marginBottom: 8,
         borderRadius: 8,
     },
+    recyclerView_text: {
+        fontFamily: 'Roboto',
+        fontSize: 16,
+        color: colors.white
+    }
 });
 
 export default GoalsActivity;
