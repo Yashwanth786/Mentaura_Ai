@@ -91,7 +91,7 @@ export default function MainActivity() {
               end={{ x: 1, y: 0 }} // Ending point (right)
               style={styles.gradient}>
               <Image source={require('../assets/images/mainactivity_4.png')} style={styles.lefticon1} />
-              <Text style={styles.buttonText1}>Achivements and Awards</Text>
+              <Text style={styles.buttonText1}>Achievements and Awards</Text>
               <Ionicons name='chevron-forward' size={35} color={'#CFC90A'} style={styles.righticon} />
             </LinearGradient>
           </TouchableOpacity>
@@ -120,7 +120,7 @@ export default function MainActivity() {
               start={{ x: 0, y: 0 }} // Starting point (left)
               end={{ x: 1, y: 0 }} // Ending point (right)
               style={styles.gradient}>
-              <Image source={require('../assets/images/mainactivity_6.png')} style={styles.lefticon} />
+              <Image source={require('../assets/images/mainactivity_6')} style={styles.lefticon} />
               <Text style={styles.buttonText}>Courses</Text>
               <Ionicons name='chevron-forward' size={35} color={'#CFC90A'} style={styles.righticon} />
             </LinearGradient>
