@@ -6,19 +6,29 @@ import { StatusBar } from 'expo-status-bar'
 import { useFonts } from 'expo-font';
 import colors from '../assets/colors';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createDrawerNavigator, DrawerNavigationProp } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import GoalsActivity from './GoalsActivity';
 import SubscriptionsActivity from './SubscriptionsActivity';
 
+type DrawerParamList = {
+  Home: undefined;
+  Notifications: undefined;
+};
+
 SplashScreen.preventAutoHideAsync();
+const Drawer = createDrawerNavigator<DrawerParamList>();
+type DrawerNavProp = DrawerNavigationProp<DrawerParamList>;
+
+
 
 export default function MainActivity() {
   const router = useRouter();
 
-  const Drawer = createDrawerNavigator();
+  const navigation = useNavigation<DrawerNavProp>();
 
   const [fontsLoaded, error] = useFonts({
     "Montserrat-Medium": require("../assets/fonts/Montserrat/static/Montserrat-SemiBold.ttf"),
@@ -49,7 +59,7 @@ export default function MainActivity() {
               <View style={{ flex: 1 }}>
                 {/* Menu Button */}
                 <View style={styles.menu}>
-                  <TouchableOpacity onPress={() => router.push('/HomePage')}>
+                  <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
                     <Ionicons name='menu' size={35} color="white" />
                   </TouchableOpacity>
                 </View>
