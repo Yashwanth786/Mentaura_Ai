@@ -42,22 +42,24 @@ export default function MainActivity() {
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.main}>
 
-          <NavigationContainer>
-            <Drawer.Navigator initialRouteName="Home">
-              <Drawer.Screen name="Home" component={GoalsActivity} />
-              <Drawer.Screen name="Notifications" component={SubscriptionsActivity} />
-            </Drawer.Navigator>
-          </NavigationContainer>
-
           <View style={styles.header} >
             <Image source={require('../assets/images/mainactivity_1.jpg')} style={styles.topImage} />
 
-            <View style={styles.menu} >
-              <TouchableOpacity
-                onPress={() => router.push('/HomePage')}>
-                <Ionicons name='menu' size={35} color={colors.white} />
-              </TouchableOpacity>
-            </View>
+            <NavigationContainer>
+              <View style={{ flex: 1 }}>
+                {/* Menu Button */}
+                <View style={styles.menu}>
+                  <TouchableOpacity onPress={() => router.push('/HomePage')}>
+                    <Ionicons name='menu' size={35} color="white" />
+                  </TouchableOpacity>
+                </View>
+
+                <Drawer.Navigator initialRouteName="Home">
+                  <Drawer.Screen name="Home" component={GoalsActivity} />
+                  <Drawer.Screen name="Notifications" component={SubscriptionsActivity} />
+                </Drawer.Navigator>
+              </View>
+            </NavigationContainer>
 
             <Text style={styles.header_text_user} >Hi, User!</Text>
 
