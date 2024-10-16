@@ -6,12 +6,19 @@ import { StatusBar } from 'expo-status-bar'
 import { useFonts } from 'expo-font';
 import colors from '../assets/colors';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { NavigationContainer } from '@react-navigation/native';
 import Ionicons from '@expo/vector-icons/Ionicons';
+
+import GoalsActivity from './GoalsActivity';
+import SubscriptionsActivity from './SubscriptionsActivity';
 
 SplashScreen.preventAutoHideAsync();
 
 export default function MainActivity() {
   const router = useRouter();
+
+  const Drawer = createDrawerNavigator();
 
   const [fontsLoaded, error] = useFonts({
     "Montserrat-Medium": require("../assets/fonts/Montserrat/static/Montserrat-SemiBold.ttf"),
@@ -34,6 +41,13 @@ export default function MainActivity() {
       <StatusBar style='auto' backgroundColor={colors.customColor} />
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.main}>
+
+          <NavigationContainer>
+            <Drawer.Navigator initialRouteName="Home">
+              <Drawer.Screen name="Home" component={GoalsActivity} />
+              <Drawer.Screen name="Notifications" component={SubscriptionsActivity} />
+            </Drawer.Navigator>
+          </NavigationContainer>
 
           <View style={styles.header} >
             <Image source={require('../assets/images/mainactivity_1.jpg')} style={styles.topImage} />
@@ -105,7 +119,7 @@ export default function MainActivity() {
               start={{ x: 0, y: 0 }} // Starting point (left)
               end={{ x: 1, y: 0 }} // Ending point (right)
               style={styles.gradient}>
-              <Image source={require('../assets/images/mainactivity_4.png')} style={styles.lefticon} />
+              <Image source={require('../assets/images/mainactivity_5.png')} style={styles.lefticon} />
               <Text style={styles.buttonText}>Subscriptions</Text>
               <Ionicons name='chevron-forward' size={35} color={'#CFC90A'} style={styles.righticon} />
             </LinearGradient>
